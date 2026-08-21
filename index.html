@@ -1,0 +1,441 @@
+---
+layout: none
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journey Forrest</title>
+<meta name="description" content="Journey Forrest — Computer Science student at Texas State University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #15161c;
+    --panel: #1c1e27;
+    --panel-line: #2b2e3a;
+    --amber: #e8a33d;
+    --amber-dim: #6b5327;
+    --blue: #6f9cc4;
+    --paper: #f3efe6;
+    --muted: #8b8d9c;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--paper);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: var(--amber); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 28px 120px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position: relative;
+    padding: 100px 28px 70px;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--panel-line);
+  }
+  .hero::before{
+    content: "";
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 720px;
+    height: 520px;
+    background: radial-gradient(ellipse at center, rgba(232,163,61,0.20) 0%, rgba(232,163,61,0.06) 45%, transparent 72%);
+    pointer-events: none;
+  }
+  .eyebrow{
+    position: relative;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin: 0 0 18px;
+  }
+  .hero h1{
+    position: relative;
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: clamp(42px, 8vw, 72px);
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    color: var(--paper);
+  }
+  .hero .role{
+    position: relative;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 34px;
+  }
+  .contact-row{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 22px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .contact-row span{ display: inline-flex; align-items: center; gap: 8px; margin: 0 2px; }
+  .contact-row a{ color: var(--paper); }
+  .dot{ color: var(--amber); font-size: 12px; }
+
+  /* ---------- Cue rail sections ---------- */
+  .cues{
+    margin-top: 64px;
+    position: relative;
+  }
+  .cues::before{
+    content: "";
+    position: absolute;
+    left: 46px;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--panel-line), var(--panel-line) 92%, transparent);
+  }
+
+  .cue{
+    position: relative;
+    padding: 0 0 64px 96px;
+  }
+  .cue:last-child{ padding-bottom: 0; }
+
+  .cue-marker{
+    position: absolute;
+    left: 38px;
+    top: 4px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--amber);
+    box-shadow: 0 0 0 4px var(--bg), 0 0 14px rgba(232,163,61,0.5);
+  }
+
+  .cue-label{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin: 0 0 6px;
+  }
+
+  .cue h2{
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 28px;
+    margin: 4px 0 26px;
+    color: var(--paper);
+  }
+
+  /* ---------- Entries ---------- */
+  .entry{
+    border-left: 2px solid var(--panel-line);
+    padding: 2px 0 2px 22px;
+    margin-bottom: 26px;
+    transition: border-color 0.2s ease;
+  }
+  .entry:last-child{ margin-bottom: 0; }
+  .entry:hover{ border-left-color: var(--amber); }
+
+  .entry-top{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6px 16px;
+  }
+  .entry-title{
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--paper);
+  }
+  .entry-org{
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--blue);
+  }
+  .entry-date{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .entry-sub{
+    margin: 6px 0 0;
+    font-size: 14.5px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .entry-body{
+    margin: 8px 0 0;
+    font-size: 14.5px;
+    color: #c9cad4;
+    max-width: 62ch;
+  }
+
+  /* ---------- Chips ---------- */
+  .chip-group{ margin-bottom: 18px; }
+  .chip-group:last-child{ margin-bottom: 0; }
+  .chip-group-label{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  .chips{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chip{
+    font-size: 13px;
+    padding: 6px 13px;
+    border-radius: 999px;
+    border: 1px solid var(--panel-line);
+    background: var(--panel);
+    color: var(--paper);
+  }
+  .chip.accent{
+    border-color: var(--amber-dim);
+    color: var(--amber);
+  }
+  .chip.blue{
+    border-color: #35506b;
+    color: var(--blue);
+  }
+
+  /* ---------- Cert list ---------- */
+  .cert-list{ list-style: none; margin: 0; padding: 0; }
+  .cert-list li{
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--panel-line);
+    font-size: 14.5px;
+  }
+  .cert-list li:last-child{ border-bottom: none; }
+  .cert-list .mark{ color: var(--amber); font-family: "IBM Plex Mono", monospace; }
+  .cert-list .cert-meta{ color: var(--muted); font-size: 13px; }
+
+  /* ---------- Hobbies line ---------- */
+  .hobby-line{
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--blue);
+    line-height: 1.9;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align: center;
+    padding: 50px 28px 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 600px){
+    .hero{ padding: 72px 20px 50px; }
+    .cues::before{ left: 30px; }
+    .cue{ padding-left: 62px; }
+    .cue-marker{ left: 22px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <p class="eyebrow">Resume · Run Sheet</p>
+    <h1>Journey Forrest</h1>
+    <p class="role">Computer Science Student · Texas State University</p>
+    <div class="contact-row">
+      <span>1629 Post Rd, San Marcos, TX 78666</span>
+      <span class="dot">&#9679;</span>
+      <span><a href="tel:+18179940306">(817) 994-0306</a></span>
+      <span class="dot">&#9679;</span>
+      <span><a href="mailto:journey.forrest@icloud.com">journey.forrest@icloud.com</a></span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="cues">
+
+      <section class="cue">
+        <span class="cue-marker" aria-hidden="true"></span>
+        <h2>Education</h2>
+
+        <div class="entry">
+          <div class="entry-top">
+            <span class="entry-title">Texas State University <span class="entry-org">— San Marcos, TX</span></span>
+            <span class="entry-date">Aug 2025 – Present</span>
+          </div>
+          <p class="entry-sub">Bachelor of Science in Computer Science — Minors: Business Administration, Applied Mathematics — 3.6/4.0 GPA</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-top">
+            <span class="entry-title">Tarrant County College <span class="entry-org">— Fort Worth, TX</span></span>
+            <span class="entry-date">Aug 2024 – May 2025</span>
+          </div>
+          <p class="entry-sub">Coursework toward B.S. in Computer Science</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-top">
+            <span class="entry-title">University of Houston <span class="entry-org">— Houston, TX</span></span>
+            <span class="entry-date">Aug 2023 – May 2024</span>
+          </div>
+          <p class="entry-sub">Coursework toward B.S. in Computer Science (transferred to Texas State University)</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-top">
+            <span class="entry-title">Central High School <span class="entry-org">— Fort Worth, TX</span></span>
+            <span class="entry-date">2019 – 2023</span>
+          </div>
+          <p class="entry-sub">High School Diploma — 3.8/4.0 GPA</p>
+        </div>
+      </section>
+
+      <section class="cue">
+        <span class="cue-marker" aria-hidden="true"></span>
+        <h2>Certifications</h2>
+        <ul class="cert-list">
+          <li><span class="mark">▸</span> Information Technology—Programming 1 Certificate <span class="cert-meta">— Tarrant County College, May 2025</span></li>
+          <li><span class="mark">▸</span> TABC Certification</li>
+          <li><span class="mark">▸</span> Food Handlers Certification</li>
+        </ul>
+      </section>
+
+      <section class="cue">
+        <span class="cue-marker" aria-hidden="true"></span>
+        <h2>Work Experience</h2>
+
+        <div class="entry">
+          <div class="entry-top">
+            <span class="entry-title">Front of House <span class="entry-org">— Chills on the Creek</span></span>
+            <span class="entry-date">Aug 2025 – Present</span>
+          </div>
+          <p class="entry-body">Serving as a front of house team member, handling customer service and daily front-of-house operations.</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-top">
+            <span class="entry-title">Barista <span class="entry-org">— The Sicilian Butcher</span></span>
+            <span class="entry-date">Jul 2024 – Aug 2025</span>
+          </div>
+          <p class="entry-body">Prepared and served coffee and beverage orders, managed the register, and provided customer service in a fast-paced setting.</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-top">
+            <span class="entry-title">Team Member <span class="entry-org">— Mooyah Burgers and Shakes</span></span>
+            <span class="entry-date">Aug 2022 – Aug 2023</span>
+          </div>
+          <p class="entry-body">Handled customer service, cash register operation, food preparation, restaurant opening/closing procedures, and cleaning of tables and equipment.</p>
+        </div>
+
+        <div class="entry">
+          <div class="entry-top">
+            <span class="entry-title">Crew Member <span class="entry-org">— Hawaiian Bros Island Grill</span></span>
+            <span class="entry-date">Aug 2021 – May 2022</span>
+          </div>
+          <p class="entry-body">Provided customer service in dining, order-taking, and drive-thru operations, and prepared food including plating meals and prepping menu items.</p>
+        </div>
+      </section>
+
+      <section class="cue">
+        <span class="cue-marker" aria-hidden="true"></span>
+        <h2>Skills &amp; Languages</h2>
+
+        <div class="chip-group">
+          <p class="chip-group-label">Programming</p>
+          <div class="chips">
+            <span class="chip accent">C++</span>
+            <span class="chip accent">Java</span>
+            <span class="chip">Python (Basics)</span>
+            <span class="chip">HTML (Basics)</span>
+          </div>
+        </div>
+
+        <div class="chip-group">
+          <p class="chip-group-label">Software</p>
+          <div class="chips">
+            <span class="chip accent">Adobe After Effects (Expert)</span>
+            <span class="chip">Microsoft Excel (Basics)</span>
+          </div>
+        </div>
+
+        <div class="chip-group">
+          <p class="chip-group-label">Other</p>
+          <div class="chips">
+            <span class="chip">Babysitting</span>
+            <span class="chip">Technical Theatre (Sound &amp; Lights)</span>
+          </div>
+        </div>
+
+        <div class="chip-group">
+          <p class="chip-group-label">Languages</p>
+          <div class="chips">
+            <span class="chip blue">English (Expert)</span>
+            <span class="chip blue">Spanish (Basics)</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="cue">
+        <span class="cue-marker" aria-hidden="true"></span>
+        <h2>Hobbies</h2>
+        <p class="hobby-line">Video Editing · Graphic Design · Game Development · Dance · Coding · Theatre</p>
+      </section>
+
+    </div>
+  </div>
+
+  <footer>House lights up · Thanks for reading</footer>
+
+</body>
+</html>
