@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Journey Forrest | Computer Science Student</title>
-<meta name="description" content="Journey Forrest, Computer Science student at Texas State University. Projects in Java & C++.">
+<meta name="description" content="Journey Forrest, Computer Science student at Texas State University. Projects in Java, C++, TypeScript and game development.">
 <meta property="og:title" content="Journey Forrest">
 <meta property="og:description" content="Computer Science student at Texas State University. Projects, skills and resume.">
 <meta property="og:type" content="website">
@@ -69,6 +69,11 @@ h3{font-family:var(--serif);font-size:1.25rem;margin:0 0 .3rem}
 .tag{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:.1rem .7rem;font-size:.85rem;color:var(--pink)}
 .card.soon{border-style:dashed;background:transparent}
 .card,.contact .btn{border-radius:0}
+.card.wide{grid-column:1/-1}
+.card .when{color:var(--muted);font-size:.9rem;margin-top:-.4rem}
+.card ul{margin:0;padding-left:1.1rem;color:var(--muted);font-size:.98rem}
+.card li{margin-bottom:.45rem;padding-left:.2rem}
+.card li::marker{color:var(--red-soft)}
 
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem}
 .skills h3{font-size:1.05rem;color:var(--red-soft)}
@@ -119,17 +124,28 @@ footer{text-align:center;padding:2rem 1rem 3rem;border-top:1px solid var(--line)
 <section id="education">
   <h2>Education</h2>
   <div class="grid">
-    <article class="card">
+    <article class="card wide">
       <h3>Texas State University</h3>
-      <p>B.S. in Computer Science, minors in Business Administration and Applied Mathematics. 3.6 GPA. Aug 2025 to present.</p>
+      <div class="when">Aug 2025 to present</div>
+      <p>B.S. in Computer Science. Minors in Business Administration and Applied Mathematics. 3.6 GPA.</p>
     </article>
     <article class="card">
-      <h3>Earlier coursework</h3>
-      <p>Tarrant County College (2024 to 2025) and University of Houston (2023 to 2024), both toward a B.S. in Computer Science.</p>
+      <h3>Tarrant County College</h3>
+      <div class="when">Aug 2024 to May 2025</div>
+      <p>Coursework toward a B.S. in Computer Science.</p>
+    </article>
+    <article class="card">
+      <h3>University of Houston</h3>
+      <div class="when">Aug 2023 to May 2024</div>
+      <p>Coursework toward a B.S. in Computer Science, then transferred to Texas State.</p>
     </article>
     <article class="card">
       <h3>Certifications</h3>
-      <p>IT Programming 1 Certificate (Tarrant County College, 2025), TABC and Food Handlers.</p>
+      <ul>
+        <li>IT Programming 1 Certificate, Tarrant County College (May 2025)</li>
+        <li>TABC Certification</li>
+        <li>Food Handlers Certification</li>
+      </ul>
     </article>
   </div>
 </section>
@@ -137,7 +153,7 @@ footer{text-align:center;padding:2rem 1rem 3rem;border-top:1px solid var(--line)
 <section id="skills">
   <h2>Skills</h2>
   <div class="skills">
-    <div><h3>Programming</h3><div class="tags"><span class="tag">C++</span><span class="tag">Java</span><span class="tag">Python</span><span class="tag">HTML</span></div></div>
+    <div><h3>Programming</h3><div class="tags"><span class="tag">C++</span><span class="tag">Java</span><span class="tag">Python</span><span class="tag">HTML</span><span class="tag">AI development</span></div></div>
     <div><h3>Creative</h3><div class="tags"><span class="tag">Adobe After Effects</span><span class="tag">Video editing</span><span class="tag">Graphic design</span><span class="tag">Game development</span></div></div>
     <div><h3>Other</h3><div class="tags"><span class="tag">Microsoft Excel</span><span class="tag">Technical theatre (sound and lights)</span><span class="tag">Spanish</span></div></div>
   </div>
@@ -162,7 +178,7 @@ footer{text-align:center;padding:2rem 1rem 3rem;border-top:1px solid var(--line)
     </article>
     <article class="card soon">
       <h3>Next up</h3>
-      <p>Mini projects are on the way!</p>
+      <p>Mini projects are on the way. A small game, an animation reel and a tool I use myself are the first three.</p>
     </article>
   </div>
 </section>
@@ -171,7 +187,7 @@ footer{text-align:center;padding:2rem 1rem 3rem;border-top:1px solid var(--line)
 
 <section class="contact" id="contact">
   <div class="wrap">
-    <div style="height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);margin-bottom:1.4rem"></div>
+    <h2 style="justify-content:center"></h2>
     <p>Have an internship, a project or a question? I'd love to hear from you!</p>
     <div class="btns">
       <a class="btn main" href="mailto:journforr3@gmail.com">journforr3@gmail.com</a>
