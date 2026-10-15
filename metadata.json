@@ -1,0 +1,6 @@
+{
+  "name": "Journey Forrest Portfolio",
+  "description": "Portfolio website for Journey Forrest, Computer Science student at Texas State University featuring education, projects, skills, and experience.",
+  "permissions": [],
+  "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
