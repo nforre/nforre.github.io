@@ -24,9 +24,34 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=DM+Sans:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      :root {
+        --bg: #150a0d;
+        --text: #fbeee9;
+        --red: #d7263d;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #150a0d;
+        color: #fbeee9;
+        font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+        min-height: 100vh;
+      }
+      #root {
+        min-height: 100vh;
+        background-color: #150a0d;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div style="min-height: 100vh; background-color: #150a0d; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fbeee9; font-family: 'DM Sans', sans-serif;">
+        <span style="font-size: 2.5rem; margin-bottom: 0.8rem;" aria-hidden="true">🎭</span>
+        <h1 style="font-family: 'Fraunces', serif; font-size: 2rem; margin: 0 0 0.5rem; letter-spacing: -0.01em;">Journey Forrest</h1>
+        <p style="color: #ff6b81; margin: 0; font-size: 1.1rem;">Computer Science Student · Texas State University</p>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

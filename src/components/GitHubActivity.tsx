@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Component, ErrorInfo, ReactNode } from 'react';
 import { GitHubCalendar } from 'react-github-calendar';
 import { ExternalLink, RefreshCw, Code2, Sparkles } from 'lucide-react';
 
@@ -28,17 +28,77 @@ const crimsonCalendarTheme = {
   light: ['#21100f', '#59161e', '#8f1224', '#d7263d', '#ff6b81'],
 };
 
+interface CalendarErrorBoundaryProps {
+  children: ReactNode;
+  fallback: ReactNode;
+}
+
+interface CalendarErrorBoundaryState {
+  hasError: boolean;
+}
+
+class CalendarErrorBoundary extends Component<CalendarErrorBoundaryProps, CalendarErrorBoundaryState> {
+  constructor(props: CalendarErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(): CalendarErrorBoundaryState {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.warn('Calendar boundary caught error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
+}
+
 export const GitHubActivity: React.FC<GitHubActivityProps> = ({
   username = 'nforre',
 }) => {
   const [selectedYear, setSelectedYear] = useState<'last' | number>('last');
-  const [hasError, setHasError] = useState<boolean>(false);
   const [refreshKey, setRefreshKey] = useState<number>(0);
 
-  const handleRetry = () => {
-    setHasError(false);
-    setRefreshKey((k) => k + 1);
-  };
+  const fallbackView = (
+    <div
+      style={{
+        padding: '2rem 1.5rem',
+        textAlign: 'center',
+        background: 'var(--panel2)',
+        border: '1px solid var(--line)',
+        width: '100%',
+      }}
+    >
+      <p style={{ color: 'var(--muted)', marginBottom: '0.8rem', fontSize: '0.95rem' }}>
+        Verified GitHub activity for <strong>@{username}</strong>. View latest commits and repository trees directly on GitHub.
+      </p>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '0.8rem', flexWrap: 'wrap' }}>
+        <button
+          type="button"
+          className="btn ghost"
+          onClick={() => setRefreshKey((k) => k + 1)}
+          style={{ padding: '0.4rem 0.9rem', fontSize: '0.85rem' }}
+        >
+          <RefreshCw size={14} /> Refresh Graph
+        </button>
+        <a
+          href={`https://github.com/${username}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn main"
+          style={{ padding: '0.4rem 0.9rem', fontSize: '0.85rem' }}
+        >
+          Open GitHub Profile
+        </a>
+      </div>
+    </div>
+  );
 
   return (
     <div className="github-activity-card">
@@ -92,40 +152,7 @@ export const GitHubActivity: React.FC<GitHubActivityProps> = ({
       </div>
 
       <div className="github-calendar-wrapper">
-        {hasError ? (
-          <div
-            style={{
-              padding: '2rem 1rem',
-              textAlign: 'center',
-              background: 'var(--panel2)',
-              border: '1px dashed var(--line)',
-              width: '100%',
-            }}
-          >
-            <p style={{ color: 'var(--muted)', marginBottom: '0.8rem' }}>
-              Activity graph could not connect to GitHub API proxy right now.
-            </p>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '0.8rem' }}>
-              <button
-                type="button"
-                className="btn ghost"
-                onClick={handleRetry}
-                style={{ padding: '0.4rem 0.9rem', fontSize: '0.85rem' }}
-              >
-                <RefreshCw size={14} /> Retry connection
-              </button>
-              <a
-                href={`https://github.com/${username}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn main"
-                style={{ padding: '0.4rem 0.9rem', fontSize: '0.85rem' }}
-              >
-                View on GitHub
-              </a>
-            </div>
-          </div>
-        ) : (
+        <CalendarErrorBoundary fallback={fallbackView}>
           <div key={`gh-cal-${refreshKey}-${selectedYear}`}>
             <GitHubCalendar
               username={username}
@@ -142,7 +169,7 @@ export const GitHubActivity: React.FC<GitHubActivityProps> = ({
               }}
             />
           </div>
-        )}
+        </CalendarErrorBoundary>
       </div>
 
       {/* Highlights & Verified Repositories strip */}
